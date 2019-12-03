@@ -1,0 +1,52 @@
+.bgColor {
+	background: #fff;
+}
+
+.quantityLabel {
+	font-size: 25px;
+	font-weight: bold;
+}
+
+.fa-forward {
+	background-color: #509935;
+	padding: 5px;
+	color: #fff;
+	cursor: e-resize;
+}
+
+.priceMessage {
+	position: absolute;
+    bottom: 0px;
+    display: inline-grid;
+    right: 0px;
+    margin: 10px;
+}
+
+.cardColor {
+	background-color: #b5b5b5;
+}
+
+.is-left {
+	text-align: left;
+}
+
+.menu-image {
+	border-radius: 10%;
+}
+
+.column {
+	background-color: #b5b5b5;
+}
+
+.alignCenterContent {
+ 	justify-content: center;
+}
+
+.hero-body {
+	padding: 3rem 0.7rem;
+}
+
+.datpayment-form {
+	background: #b5b5b5;
+	border: unset;
+}

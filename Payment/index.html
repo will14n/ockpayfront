@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html style="overflow-y: auto;">
+
+	<head>
+	    <meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <title>DROP - Pagamento</title>
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	    <!-- Bulma Version 0.8.x-->
+	    <link rel="stylesheet" href="../css/bulma.min.css" />
+        <link rel="stylesheet" type="text/css" href="../css/DatPayment.css">
+	    <link rel="stylesheet" href="../css/app.css" />
+        <link rel="stylesheet" type="text/css" href="../css/example.css">
+	</head>
+	<!-- 
+	242424242424242		Visa
+    5555555555554444	Masterca"rd
+    378282246310005     American Express
+    6011111111111117	Discover"
+	-->
+	<body>
+		<section class="hero is-fullheight bgColor">
+	        <div class="hero-body">
+	            <div class="container has-text-centered">
+	                    <h3 class="title has-text-black">Finalizar Compra</h3>
+	                <div class="column is-8 is-offset-2">
+						<form action="/" method="POST" id="payment-form" class="datpayment-form">
+				            <div class="dpf-card-placeholder"></div>
+				            <div class="dpf-input-container">
+				                <div class="dpf-input-row">
+				                    <label class="dpf-input-label">Número do cartão</label>
+				                    <div class="dpf-input-container with-icon">
+				                        <span class="dpf-input-icon"><i class="fa fa-credit-card" aria-hidden="true"></i></span>
+				                        <input type="text" class="dpf-input" size="20" data-type="number">
+				                    </div>
+				                </div>
+
+				                <div class="dpf-input-row">
+				                    <div class="dpf-input-column">
+				                        <input type="hidden" size="2" data-type="exp_month" placeholder="MM">
+				                        <input type="hidden" size="2" data-type="exp_year" placeholder="YY">
+
+				                        <label class="dpf-input-label">Validade</label>
+				                        <div class="dpf-input-container">
+				                            <input type="text" class="dpf-input" data-type="expiry">
+				                        </div>
+				                    </div>
+				                    <div class="dpf-input-column">
+				                        <label class="dpf-input-label">Código de verificação</label>
+				                        <div class="dpf-input-container">
+				                            <input type="text" class="dpf-input" size="4" data-type="cvc">
+				                        </div>
+				                    </div>
+				                </div>
+
+				                <div class="dpf-input-row">
+				                    <label class="dpf-input-label">Nome do Titular</label>
+				                    <div class="dpf-input-container">
+				                        <input type="text" size="4" class="dpf-input" data-type="name">
+				                    </div>
+				                </div>
+	            				<button type="submit" class="button is-success is-info is-large"><i class="fa fa-shopping-cart" aria-hidden="true"> Pagamento</i></button>
+				                <!-- <button type="submit" class="dpf-submit">
+				                        <span class="btn-active-state">
+				                            Confirmar Pagamento
+				                        </span>
+				                        <span class="btn-loading-state">
+				                            <i class="fa fa-refresh "></i>
+				                        </span>
+				                </button> -->
+				            </div>
+				        </form>
+			        </div>
+	            </div>
+	        </div>
+	    </section>
+	</body>
+	<script async type="text/javascript" src="../js/bulma.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<!-- <script src="../js/app.js"></script> -->
+	<script src="../js/api.js"></script>
+	<!-- <script type="text/javascript" src="https://js.stripe.com/v2/"></script> -->
+    <script type="text/javascript" src="../js/DatPayment.js"></script>
+
+    <script type="text/javascript">
+    	document.body.querySelector("form").onsubmit = function(){
+				pay(window.location.search.substr(1).replace("request=", ""));
+			// window.location.href = "../Request/index.html";
+		}
+
+        var payment_form = new DatPayment({
+            form_selector: '#payment-form',
+            card_container_selector: '.dpf-card-placeholder',
+
+            number_selector: '.dpf-input[data-type="number"]',
+            date_selector: '.dpf-input[data-type="expiry"]',
+            cvc_selector: '.dpf-input[data-type="cvc"]',
+            name_selector: '.dpf-input[data-type="name"]',
+
+            submit_button_selector: '.dpf-submit',
+
+            placeholders: {
+                number: '•••• •••• •••• ••••',
+                expiry: '••/••',
+                cvc: '•••',
+                name: 'Nome impresso no cartão'
+            },
+
+            validators: {
+                number: function(number){
+                    return Stripe.card.validateCardNumber(number);
+                },
+                expiry: function(expiry){
+                    var expiry = expiry.split(' / ');
+                    return Stripe.card.validateExpiry(expiry[0]||0,expiry[1]||0);
+                },
+                cvc: function(cvc){
+                    return Stripe.card.validateCVC(cvc);
+                },
+                name: function(value){
+                    return value.length > 0;
+                }
+            }
+        });
+
+        var demo_log_div = document.getElementById("demo-log");
+
+        payment_form.form.addEventListener('payment_form:submit',function(e){
+            var form_data = e.detail;
+            payment_form.unlockForm();
+            demo_log_div.innerHTML += "<br>"+JSON.stringify(form_data);
+        });
+
+        payment_form.form.addEventListener('payment_form:field_validation_success',function(e){
+            var input = e.detail;
+
+            demo_log_div.innerHTML += "<br>field_validation_success:"+input.getAttribute("data-type");
+
+        });
+
+        payment_form.form.addEventListener('payment_form:field_validation_failed',function(e){
+            var input = e.detail;
+
+            demo_log_div.innerHTML += "<br>field_validation_failed:"+input.getAttribute("data-type");
+        });
+    </script>
+</html>

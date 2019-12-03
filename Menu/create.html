@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html style="overflow-y: auto;">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>DROP - Menu Create</title>
+		<!-- Bulma Version 0.8.x-->
+		<link rel="stylesheet" href="../css/bulma.min.css" />
+		<link rel="stylesheet" href="../css/app.css" />
+	</head>
+
+	<body>
+		<section class="bgColor">
+    		<form method="POST" action="javascript:;" id="form" enctype="multipart/form-data" class="hero is-fullheight">
+    			<input type="hidden" id="client_id" name="client_id" value="" />
+				<div class="hero-body">
+					<div class="container has-text-centered">
+						<div class="columns">
+							<div class="column">
+								<div class="field">	
+									<div class="file is-centered is-large is-boxed">
+										<label class="file-label">
+											<input class="file-input is-rounded" type="file" name="attachment" id="attachment"	/>
+											<span class="file-cta">
+												<span class="file-icon">
+													<i class="fas fa-upload"></i>
+												</span>
+												<span class="file-label">
+													Large file…
+												</span>
+											</span>
+										</label>
+									</div>
+								</div>
+								<div class="field">
+									<label class="label">NOME DO PRATO OU BEBIDA</label>
+									<div class="control">
+										<input class="input is-rounded" type="text" name="title" id="title" required />
+									</div>
+								</div>
+								<div class="field">
+									<label class="label">PREÇO</label>
+									<div class="field has-addons">
+										<p class="control">
+											<a class="button is-static is-rounded">
+												R$
+											</a>
+										</p>
+										<p class="control is-expanded">
+											<input class="input is-rounded" type="text" name="price" id="price" onkeypress="return somenteNumeros(event)" onkeyup="validateLenght(this.value);validateMoney(this.value);" onkeydown="" maxlength="9" required />
+										</p>
+									</div>
+								</div>
+								<div class="field">
+									<label class="label">INGREDIENTES / DESCRIÇÃO</label>
+									<div class="control">
+										<input class="input is-rounded" type="text" name="description" id="description" required />
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="columns has-text-centered">
+					<div class="column">
+						<button onclick="backToList()" type="button" class="button is-warning is-info is-large botaoVoltar"><i class="fas fa-list-alt  botaoVoltar"> Voltar</i></button>
+						<button type="submit" class="button is-success is-info is-large">Salvar</button>
+					</div>
+				</div>
+		        <div class="hero-foot">
+		        </div>
+    		</form>
+		</section>
+		<article class="priceMessage message is-small is-warning is-hidden" id="priceMessage">
+			<div class="message-header">
+		    	<p>Atenção</p>
+		    	<button class="delete is-small" aria-label="delete" onclick="closeMessage('priceMessage')"></button>
+		  	</div>
+			<div class="message-body">Preço máximo é R$ 99.999,99</div>
+		</article>
+	</body>
+	<script async type="text/javascript" src="../js/bulma.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="../js/app.js"></script>
+	<script src="../js/api.js"></script>
+	<script src="../js/cookies.js"></script>
+	<script type="text/javascript">
+		window.onload = function(e){
+			document.getElementById('client_id').value = getCookie('client_id');
+			document.body.querySelector("form").onsubmit = function(){
+				createMenu();
+				// console.log(serialize(document.forms[0]));
+			}
+		}
+	</script>
+	<script src="https://kit.fontawesome.com/12655d572c.js" crossorigin="anonymous"></script>
+</html>

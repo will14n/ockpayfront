@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html style="overflow-y: auto;">
+
+	<head>
+	    <meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <title>DROP - Pedido</title>
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	    <!-- Bulma Version 0.8.x-->
+	    <link rel="stylesheet" href="../css/bulma.min.css" />
+	    <link rel="stylesheet" href="../css/app.css" />
+
+	</head>
+
+	<body>
+	    <section class="hero is-fullheight bgColor">
+	        <div class="hero-body">
+	            <div class="container has-text-centered">
+	            	<div class="columns">
+	            		<div class="column">
+		                    <h3 class="title has-text-black is-marginless">Pedido</h3>
+		                    #<label id="labelRequestId"><!--AJAX REQUEST--></label>
+		                    <br />
+		                    <br />
+		                    <h3 class="title has-text-black is-marginless" id="labelRequestStatus"><!--AJAX REQUEST--></h3>
+		                    <label><!--AJAX REQUEST--></label>
+		                    <br />
+		                    <br />
+		                    <h3 class="title has-text-black is-marginless">Mesa</h3>
+		                    <label id="labelRequestTable"><!--AJAX REQUEST--></label>
+	            		</div>
+	            	</div>
+                </div>
+	        </div>
+	    </section>
+	</body>
+	<script async type="text/javascript" src="../js/bulma.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="../js/app.js"></script>
+	<script src="../js/api.js"></script>
+	<script type="text/javascript">
+		window.onload = function(e){
+			requestId = window.location.search.substr(1).replace("request=", "");
+			loadRequest(requestId);
+		}
+	</script>
+</html>
