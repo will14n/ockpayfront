@@ -11,7 +11,7 @@ function showMenu() {
 	axios.get(server+'/api/menu/' + window.location.search.substr(1),{
 	headers: {
 	  'Access-Control-Allow-Origin': '*',
-	})
+	}})
     .then(response => chargeMenu(response.data))
     .catch(error => console.log(error))
 }
