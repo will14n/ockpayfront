@@ -1,35 +1,36 @@
  var server = "https://boiling-escarpment-86975.herokuapp.com";
+ var headers = {
+	headers: {
+	  'Access-Control-Allow-Origin': '*',
+	}};
 
 function loadMenu() {
 	// console.log(window.location.search.substr(1))
-	axios.get(server+'/api/menu/client/' + window.location.search.substr(1))
+	axios.get(server+'/api/menu/client/' + window.location.search.substr(1), headers)
     .then(response => buildSnacksStructure(response.data))
     .catch(error => console.log(error))
 }
 
 function showMenu() {
-	axios.get(server+'/api/menu/' + window.location.search.substr(1),{
-	headers: {
-	  'Access-Control-Allow-Origin': '*',
-	}})
-    .then(response => chargeMenu(response.data))
+	axios.get(server+'/api/menu/' + window.location.search.substr(1), headers)
+    .then(response => console.log(response.data))
     .catch(error => console.log(error))
 }
 
 function loadCart(id) {
-	axios.get(server+'/api/menu_request/request/' + id)
+	axios.get(server+'/api/menu_request/request/' + id, headers)
     .then(response => buildCartStructure(response.data))
     .catch(error => console.log(error))
 }
 
 function loadRequestList() {
-	axios.get(server+'/api/request/')
+	axios.get(server+'/api/request/', headers)
     .then(response => buildRequestListStructure(response.data))
     .catch(error => console.log("error : "+error))
 }
 
 function loadRequest(id) {
-	axios.get(server+'/api/request/' + id)
+	axios.get(server+'/api/request/' + id, headers)
     .then(response => buildRequestStructure(response.data))
     .catch(error => console.log(error))
 }
@@ -38,7 +39,7 @@ async function finalizeRequest(id) {
 
 	params = '{"request": {"status_id": 2}}';
 
-	let res = await axios.put(server+'/api/request/' + id, JSON.parse(params));
+	let res = await axios.put(server+'/api/request/' + id, JSON.parse(params), headers);
 
 /*	if(res.request.status == 201) {
 		 window.location.href = "../Cart/index.html?request=" + res.data.id;
@@ -55,7 +56,7 @@ async function sendToCart(params) {
 	// console.log(params);return false;
 	// params = params.join();
 	// console.log(JSON.parse(params));
-	let res = await axios.post(server+'/api/request', JSON.parse(params));
+	let res = await axios.post(server+'/api/request', JSON.parse(params), headers);
 
 	if(res.request.status == 201) {
 		window.location.href = "../Cart/index.html?request=" + res.data.id;
@@ -82,6 +83,7 @@ async function createMenu() {
             'headers': {
                 'Accept': 'application/json',
             	'Content-Type': 'multipart/form-data',
+            	'Access-Control-Allow-Origin': '*',
             }
     	}
     );
@@ -112,6 +114,7 @@ async function updateMenu() {
             'headers': {
                 'Accept': 'application/json',
             	'Content-Type': 'multipart/form-data',
+            	'Access-Control-Allow-Origin': '*',
             }
     	}
     );
@@ -155,7 +158,7 @@ async function login(params) {
 	// console.log(params);
 	// params = params.join();
 	// console.log(JSON.parse(params));
-	let res = await axios.post(server+'/api/login', JSON.parse(params));
+	let res = await axios.post(server+'/api/login', JSON.parse(params), headers);
 
 	if(res.request.status == 201) {
 		let resData = res.data.success;
@@ -167,14 +170,14 @@ async function login(params) {
 }
  
 function loadClientMenu(client_id) {
-	axios.get(server+'/api/menu/client/' + client_id)
+	axios.get(server+'/api/menu/client/' + client_id, headers)
     .then(response => buildClientSnacksStructure(response.data))
     .catch(error => console.log(error))
 }
 
  
 function destroySnack(id) {
-	axios.delete(server+'/api/menu/' + id)
+	axios.delete(server+'/api/menu/' + id, headers)
     .then(response => response.data == 201 ? window.location.href = "../Client/index.html" : "")
     .catch(error => console.log(error))
 }
