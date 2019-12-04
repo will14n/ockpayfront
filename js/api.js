@@ -1,4 +1,4 @@
- var server = "http://boiling-escarpment-86975.herokuapp.com";
+ var server = "https://boiling-escarpment-86975.herokuapp.com";
 
 function loadMenu() {
 	// console.log(window.location.search.substr(1))
