@@ -8,7 +8,7 @@ function loadMenu() {
 }
 
 function showMenu() {
-	axios.get(server+'/api/menu/' + window.location.search.substr(1))
+	axios.get(server+'/api/menu/' + window.location.search.substr(1),{ crossdomain: true })
     .then(response => chargeMenu(response.data))
     .catch(error => console.log(error))
 }
