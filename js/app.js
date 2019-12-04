@@ -36,8 +36,8 @@ function changeTotal() {
 function buildSnacksStructure(res) {
 
 	for(prop in res) {
-
 	    let menu = res[prop];
+console.log(menu)
 		let menuStructure = createSnackStructure(menu);
 		document.getElementById("snacks").appendChild(menuStructure);
 	}
