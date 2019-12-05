@@ -1,4 +1,4 @@
- var server = "https://ockpay.appspot.com";
+ var server = "https://boiling-escarpment-86975.herokuapp.com";
  var headers = {
 	headers: {
 	  'Access-Control-Allow-Origin': '*',
