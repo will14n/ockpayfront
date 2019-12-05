@@ -1,4 +1,4 @@
- var server = "https://boiling-escarpment-86975.herokuapp.com";
+ var server = "https://ockpay.appspot.com";
  var headers = {
 	headers: {
 	  'Access-Control-Allow-Origin': '*',
@@ -26,7 +26,7 @@ function loadCart(id) {
 function loadRequestList() {
 	axios.get(server+'/api/request/', headers)
     .then(response => buildRequestListStructure(response.data))
-    .catch(error => console.log("error : "+error))
+    .catch(error => console.log(error))
 }
 
 function loadRequest(id) {
