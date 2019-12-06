@@ -1,4 +1,4 @@
-var server = "http://localhost:8000";
+var server = "https://norse-avatar-244711.appspot.com";
 
 var headers = {
 	headers: {
