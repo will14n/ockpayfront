@@ -21,9 +21,18 @@
 	-->
 	<body>
 		<section class="hero is-fullheight bgColor">
+			<div class="hero-head">
+				<div class="columns">
+	    			<div class="column is-12">
+			    		<div class="container has-text-centered">
+			    			<br />
+			                <p><strong class="title is-5">Resumo do Pedido</strong></p>
+			            </div>
+	    			</div>
+	    		</div>
+	    	</div>
 	        <div class="hero-body">
 	            <div class="container has-text-centered">
-	                    <h3 class="title has-text-black">Finalizar Compra</h3>
 	                <div class="column is-8 is-offset-2">
 						<form action="/" method="POST" id="payment-form" class="datpayment-form">
 				            <div class="dpf-card-placeholder"></div>
@@ -76,8 +85,7 @@
 	        </div>
 	    </section>
 	</body>
-	<script async type="text/javascript" src="../js/bulma.js"></script>
-	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="../js/axios/dist/axios.min.js"></script>
 	<!-- <script src="../js/app.js"></script> -->
 	<script src="../js/api.js"></script>
 	<!-- <script type="text/javascript" src="https://js.stripe.com/v2/"></script> -->

@@ -1,8 +1,10 @@
- var server = "https://boiling-escarpment-86975.herokuapp.com";
- var headers = {
+var server = "http://localhost:8000";
+
+var headers = {
 	headers: {
 	  'Access-Control-Allow-Origin': '*',
-	}};
+	}
+};
 
 function loadMenu() {
 	// console.log(window.location.search.substr(1))
@@ -13,7 +15,7 @@ function loadMenu() {
 
 function showMenu() {
 	axios.get(server+'/api/menu/' + window.location.search.substr(1), headers)
-    .then(response => console.log(response.data))
+    .then(response => chargeMenu(response.data))
     .catch(error => console.log(error))
 }
 
@@ -53,6 +55,23 @@ async function sendToCart(params) {
 	params = params.split("quantity[").join('"');
 	params = params.split("]").join('"');
 	params = '{"menu": {' + params + '}}';
+	// console.log(params);return false;
+	// params = params.join();
+	// console.log(JSON.parse(params));
+	let res = await axios.post(server+'/api/request', JSON.parse(params), headers);
+
+	if(res.request.status == 201) {
+		window.location.href = "../Cart/index.html?request=" + res.data.id;
+	}
+}
+
+async function createLogin(params) {
+
+	// params = params.split("&").join(", ");
+	// params = params.split("=").join(": ");
+	// params = params.split("quantity[").join('"');
+	// params = params.split("]").join('"');
+	// params = '{"menu": {' + params + '}}';
 	// console.log(params);return false;
 	// params = params.join();
 	// console.log(JSON.parse(params));

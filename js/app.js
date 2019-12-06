@@ -14,7 +14,6 @@ function lessQuantity(id) {
 		// console.log(quantity);
 		document.getElementById("quantityLabel[" + id + "]").innerText = newQuantity;
 		document.getElementById("quantity[" + id + "]").value = newQuantity;
-		changeTotal(quantityDom.className, "-"); 
 	}
 	changeTotal(); 
 }
@@ -23,11 +22,12 @@ function changeTotal() {
 
 	let labelTotal = document.getElementById('labelTotal');
 	let nodeList = document.querySelectorAll('input[type="hidden"]');
+	let total = 0;
 	for (var i = 0; i < nodeList.length; ++i) {
 
 		var item = nodeList[i];
 		if(item.value > 0) {
-			total = parseInt(item.value) * parseFloat(item.className);
+			total += parseInt(item.value) * parseFloat(item.className);
 		}
 	}
 	labelTotal.innerText = total;
@@ -36,6 +36,7 @@ function changeTotal() {
 function buildSnacksStructure(res) {
 
 	for(prop in res) {
+
 	    let menu = res[prop];
 		let menuStructure = createSnackStructure(menu);
 		document.getElementById("snacks").appendChild(menuStructure);
@@ -103,24 +104,24 @@ function buildRequestStructure(res) {
 }
 
 function createSnackStructure(res) {
-	let node = createDiv("columns is-vcentered  stretch");
+	let node = createDiv("columns is-vcentered stretch");
 	node.appendChild(createImageColumn(res));
-	node.appendChild(createSnackColumn(res));
+	node.appendChild(createSnackColumn(res, "is-8"));
 	node.appendChild(createQuantityColumn(res.id, res.price));
 	return node;
 }
 
 function createClientSnackStructure(res) {
-	let node = createDiv("columns");
+	let node = createDiv("columns is-vcentered");
 	node.appendChild(createImageColumn(res));
-	node.appendChild(createSnackColumn(res));
+	node.appendChild(createSnackColumn(res, "is-7"));
 	node.appendChild(createActionsColumn(res.id));
 	return node;
 }
 
 
 function createCartStructure(res) {
-	let node = createDiv("columns");
+	let node = createDiv("columns ockpayColumn");
 	node.appendChild(createDescriptionColumn(res.title));
 	node.appendChild(createPriceColumn(res));
 	return node;
@@ -152,8 +153,8 @@ function createRequestListStructure(res) {
 	return node;
 }
 
-function createSnackColumn(res) {
-	node = createDiv("column is-8")
+function createSnackColumn(res, className) {
+	node = createDiv("column " + className)
 	node.appendChild(createParagraph(res, true, null, "is-left"));
 	node.appendChild(createParagraph(res.description, null, null, "is-left"));
 	return node;
@@ -175,27 +176,28 @@ function createImageColumn(res) {
 }
 
 function createPriceColumn(res) {
-	node = createDiv("column is-4")
+	node = createDiv("column is-6")
 	node.appendChild(createParagraph("R$ " + res.price));
 	node.appendChild(createInput(res.id, res.price));
+	node.align = "right";
 	return node;
 }
 
 function createDescriptionColumn(res, id) {
-	node = createDiv("column is-4 is-offset-2");
+	node = createDiv("column is-6 is-left");
 	node.appendChild(createParagraph(res));
 	return node;
 }
 
 function createActionsColumn(id) {
-	node = createDiv("column is-1")
+	node = createDiv("column is-2  has-text-centered")
 	/*<button class="button is-medium">
     <span class="icon is-small">
       <i class="fas fa-heading"></i>
     </span>
   </button>*/
-	node.appendChild(createButton(id, 'is-warning', 'createEditIcon("pencil-alt", '+id+')'));
-	node.appendChild(createButton(id, 'is-danger', 'createDeleteIcon("trash", '+id+')'));
+	node.appendChild(createButton(id, 'iconButton is-warning', 'createIcon("edit", '+id+')'));
+	node.appendChild(createButton(id, 'iconButton is-danger', 'createIcon("delete", '+id+')'));
 
 	return node;
 }
@@ -241,7 +243,7 @@ function createFigure(res) {
 
 function createImage(res) {
 	let img = document.createElement("img");
-	img.src = "../../api/public/uploads/" + res.attachment;
+	img.src = "../uploads/" + res.attachment;
 	img.className = " menu-image";
 	return img;
 }
@@ -289,15 +291,10 @@ function createButton(id, className, icon) {
 	return button;
 }
 
-function createEditIcon(name, id) {
+function createIcon(name, id) {
 	let icon = document.createElement("i");
-	icon.className = "fas fa-" + name;
-	return icon;
-}
-
-function createDeleteIcon(name, id) {
-	let icon = document.createElement("i");
-	icon.className = "fas fa-" + name;
+	icon.className = "material-icons";
+	icon.innerText = name;
 	return icon;
 }
 
@@ -383,4 +380,12 @@ function chargeMenu(data) {
 	document.getElementById("title").value = data.title;
 	document.getElementById("price").value = data.price.replace(".", ",");
 	document.getElementById("description").value = data.description;
+}
+
+function backToLogin() {
+	window.location.href = "../Login/index.html";
+}
+
+function createAccountBotton() {
+	window.location.href = "../Login/create.html";
 }

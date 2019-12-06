@@ -14,14 +14,24 @@
 	<body>
 		<section class="bgColor">
     		<form method="POST" action="javascript:;" id="form" enctype="multipart/form-data" class="hero is-fullheight">
-    			<input type="hidden" name="client_id" id="client_id" value="" />
+    			<div class="hero-head">
+           			<div class="columns">
+		    			<div class="column is-12">
+				    		<div class="container has-text-centered">
+				    			<br />
+				                <p><strong>Alterar informações do menu</strong></p>
+				            </div>
+		    			</div>
+		    		</div>
+		    	</div>
 				<div class="hero-body">
+    				<input type="hidden" name="client_id" id="client_id" value="" />
 					<div class="container has-text-centered">
 						<div class="columns">
-							<div class="column">
+							<div class="column is-8 ockpayColumn is-offset-2">
 								<div class="field">	
 									<div class="file is-centered is-large is-boxed">
-										<label class="file-label">
+										<label class="file-label is-rounded" style="border-radius: 5%;">
 											<input class="file-input is-rounded" type="file" name="attachment" id="attachment"	/>
 											<span class="file-cta">
 												<span class="file-icon">
@@ -59,14 +69,20 @@
 										<input class="input is-rounded" type="text" name="description" id="description" />
 									</div>
 								</div>
+								<div class="field">
+									<label class="label">TIPO</label>
+									<div class="control">
+										<input class="input is-rounded" type="text" name="type" id="type" />
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="columns has-text-centered">
 					<div class="column">	
-						<button onclick="backToList()" type="button" class="button is-warning is-info is-large botaoVoltar"><i class="fas fa-list-alt  botaoVoltar"> Voltar</i></button>
-						<button type="submit" class="button is-success is-info is-large"><i class="fas fa-save"> Salvar</i></button>
+						<button onclick="backToList()" type="button" class="button is-warning is-info botaoVoltar"><i class="fas fa-list-alt  botaoVoltar"> Voltar</i></button>
+						<button type="submit" class="button is-success is-info"><i class="fas fa-save"> Salvar</i></button>
 					</div>
 				</div>
 		        <div class="hero-foot">
@@ -82,8 +98,7 @@
 		</article>
 	</body>
 	<script src="https://kit.fontawesome.com/12655d572c.js" crossorigin="anonymous"></script>
-	<!-- <script async type="text/javascript" src="../js/bulma.js"></script> -->
-	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="../js/axios/dist/axios.min.js"></script>
 	<script src="../js/app.js"></script>
 	<script src="../js/api.js"></script>
 	<script type="text/javascript">

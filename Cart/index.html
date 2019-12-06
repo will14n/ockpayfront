@@ -13,41 +13,51 @@
 	</head>
 
 	<body>
+		<form method="POST" action="javascript:;"  onsubmit="sendToPayment(this)">
 	    <section class="hero is-fullheight bgColor">
+	    	<div class="hero-head">
+				<div class="columns">
+	    			<div class="column is-12">
+			    		<div class="container has-text-centered">
+			    			<br />
+			                <p><strong>Resumo do Pedido</strong></p>
+			            </div>
+	    			</div>
+	    		</div>
+	    	</div>
 	        <div class="hero-body">
 	            <div class="container has-text-centered">
-                    <h3 class="title has-text-black">Resumo do Pedido</h3>
-                    <div id="cart">
-	                    <div class="columns">
-	                    	<div class="column is-4 is-offset-2">
-	                    		<b>Item</b>
-	                    	</div>
-	                    	<div class="column is-4">
-	                    		<b>Valor</b>
-	                    	</div>
-	                    </div>
-	                    <!-- 
-						AJAX REQUEST
-                    	-->
-                    </div>
+                    <div class="columns">
+	                    <div class="column ockpayColumn is-8 is-offset-2"  id="cart">
+	                    	<div class="columns" >
+		                    	<div class="column is-6" align="left">
+		                    		<b>Item</b>
+		                    	</div>
+		                    	<div class="column is-6" align="right">
+		                    		<b>Valor</b>
+		                    	</div>
+			                    <!-- 
+								AJAX REQUEST
+			                	-->
+		                    </div>
+		                </div>
+	                </div>
                 </div>
 	        </div>
 	        <div class="hero-foot">
-	    		<h3 class="title has-text-centered">Total: R$ <label id="labelTotal"></label></h3>
+	    		<h3 class="title is-5 has-text-centered">Total: R$ <label id="labelTotal"></label></h3>
                 <div class="container has-text-centered">
                 	<div class="is-centered">
-                		<form method="POST" action="javascript:;"  onsubmit="sendToPayment(this)">
-                			<input type="hidden" name="requestId" id="requestId" value="">
-            				<button type="submit" class="button is-success is-info is-large"><i class="fa fa-shopping-cart" aria-hidden="true"> Pagamento</i></button>
-                		</form>
+            			<input type="hidden" name="requestId" id="requestId" value="">
+        				<button type="submit" class="button is-success is-info"><i class="fa fa-shopping-cart" aria-hidden="true"> Pagamento</i></button>
                 	</div>
                 </div>
-	        	
+	        	<br />
 	        </div>
 	    </section>
+		</form>
 	</body>
-	<script async type="text/javascript" src="../js/bulma.js"></script>
-	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="../js/axios/dist/axios.min.js"></script>
 	<script src="../js/app.js"></script>
 	<script src="../js/api.js"></script>
 	<script type="text/javascript">

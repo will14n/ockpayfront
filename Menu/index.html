@@ -14,14 +14,23 @@
 	</head>
 
 	<body>
-            <form method="POST" action="javascript:;" onsubmit="sendToCart(this)">
-	    <section class="hero is-fullheight bgColor">
+        <form method="POST" action="javascript:;" onsubmit="sendToCart(this)">
+		    <section class="hero is-fullheight bgColor">
+			    <div class="hero-head">
+					<div class="columns">
+		    			<div class="column is-12">
+				    		<div class="container has-text-centered">
+				    			<br />
+				                <p><strong>Menu</strong></p>
+				            </div>
+		    			</div>
+		    		</div>
+		    	</div>
 		        <div class="hero-body">
 		        	<div class="container has-text-centered">
-	                    <h3 class="title has-text-black">Menu</h3>
 			        	<div>
 				            <div class="columns">
-			                    <div class="column is-8 is-offset-2" id="snacks">
+			                    <div class="column ockpayColumn is-8 is-offset-2" id="snacks">
 			                    	<!-- 
 									AJAX REQUEST
 			                    	-->
@@ -34,15 +43,15 @@
 	                <div class="container has-text-centered">
 	                	<h3 class="title has-text-centered">Total: R$ <label id="labelTotal">0,00</label></h3>
 	                	<div class="is-centered">
-	            			<button type="submit" class="button is-success is-info is-medium"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;Carrinho</button>
+	            			<button type="submit" class="button is-success is-info"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;Carrinho</button>
 	                	</div>
+	                	<br />
 	                </div>
 		        	
 		        </div>
-	    </section>
-            </form>	
+		    </section>
+        </form>	
 	</body>
-	<!-- <script async type="text/javascript" src="../js/bulma.js"></script> -->
 	<script src="../js/axios/dist/axios.min.js"></script>
 	<script src="../js/api.js"></script>
 	<script src="../js/app.js"></script>

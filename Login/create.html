@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html style="overflow-y: auto;">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>DROP - Menu Create</title>
+		<!-- Bulma Version 0.8.x-->
+		<link rel="stylesheet" href="../css/bulma.min.css" />
+		<link rel="stylesheet" href="../css/app.css" />
+	</head>
+
+	<body>
+		<section class="bgColor">
+    		<form method="POST" action="javascript:;" id="form" enctype="multipart/form-data" class="hero is-fullheight">
+				<div class="hero-body">
+    				<input type="hidden" id="client_id" name="client_id" value="" />
+					<div class="container has-text-centered">
+						<div class="columns">
+							<div class="column">
+								<div class="field">
+									<label class="label">Nome</label>
+									<div class="control">
+										<input class="input is-rounded" type="text" name="name" id="name" required />
+									</div>
+								</div>
+								<div class="field">
+									<label class="label">Email</label>
+									<div class="field has-addons">
+										<p class="control is-expanded">
+											<input class="input is-rounded" type="mail" name="email" id="email" required />
+										</p>
+									</div>
+								</div>
+								<div class="field">
+									<label class="label">Senha</label>
+									<div class="control">
+										<input class="input is-rounded" type="text" name="password" id="password" required />
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="columns has-text-centered">
+					<div class="column">
+						<button onclick="backToLogin()" type="button" class="button is-warning is-info is-normal botaoVoltar"><i class="fas fa-list-alt  botaoVoltar"> Voltar</i></button>
+						<button type="submit" class="button is-success is-info is-normal">Salvar</button>
+					</div>
+				</div>
+		        <div class="hero-foot">
+		        </div>
+    		</form>
+		</section>
+	</body>
+	<script src="../js/axios/dist/axios.min.js"></script>
+	<script src="../js/app.js"></script>
+	<script src="../js/api.js"></script>
+	<script src="../js/cookies.js"></script>
+	<script type="text/javascript">
+		window.onload = function(e){
+			document.getElementById('client_id').value = getCookie('client_id');
+			document.body.querySelector("form").onsubmit = function(){
+				createLogin();
+				// console.log(serialize(document.forms[0]));
+			}
+		}
+	</script>
+	<script src="https://kit.fontawesome.com/12655d572c.js" crossorigin="anonymous"></script>
+</html>

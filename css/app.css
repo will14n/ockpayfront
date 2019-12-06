@@ -34,7 +34,8 @@
 	border-radius: 10%;
 }
 
-.column {
+.ockpayColumn {
+	border-radius: 1%;
 	background-color: #b5b5b5;
 }
 
@@ -49,4 +50,12 @@
 .datpayment-form {
 	background: #b5b5b5;
 	border: unset;
+}
+
+.iconButton {
+	width: 45px;
+}
+
+.logo {
+	width: 27vh;
 }

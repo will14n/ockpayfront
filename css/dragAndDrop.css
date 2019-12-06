@@ -11,14 +11,14 @@ h2 span {
   color: #e56a5a;
 }
 .drag {
-  background-color: #e56a5a;
+  background-color: #b5b5b5;
   border-radius: 5px;
   border: 2px solid #ffe957\9;
   cursor: grab;
   float: left;
   margin-left: 5px;
   height: 78px;
-  width: calc(50% - 0.35rem);
+  width: calc(33% - 0.35rem);
   -webkit-transition: background-color 0.25s ease-in;
   -moz-transition: background-color 0.25s ease-in;
   -ms-transition: background-color 0.25s ease-in;
@@ -36,19 +36,20 @@ h2 span {
 #dropIt {
   background: #fff;
   border-radius: 5px;
-  max-height: 53vh;
+  max-height: 26vh;
   margin: 0 auto;
   padding-top: 5px;
-  width: 325px;
+  /*width: 325px;*/
   overflow: auto;
+  min-height: 50px;
 }
 
 #holder {
   background: #fff;
   border-radius: 5px;
-  max-height: 53vh;
+  max-height: 49vh;
   margin: 0 auto;
   padding-top: 5px;
-  width: 325px;
+  /*width: 325px;*/
   overflow: auto;
 }
